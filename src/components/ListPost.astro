@@ -1,0 +1,148 @@
+---
+import { Post } from '../lib/interfaces.ts'
+import { filePath } from '../lib/blog-helpers'
+import { getPostLink } from '../lib/blog-helpers.ts'
+import { getDateStr } from '../lib/blog-helpers.ts'
+import type { Post, SelectProperty } from '../lib/interfaces.ts'
+import { getTagLink } from '../lib/blog-helpers.ts'
+import '../styles/notion-color.css'
+
+export interface Props {
+  post: Post
+}
+
+const { post } = Astro.props
+let title = post.Title
+
+let image = ''
+if (post.FeaturedImage && post.FeaturedImage.Url) {
+	if (import.meta.env.DEV) {
+		image = post.FeaturedImage.Url
+	} else {
+		image = filePath(new URL(post.FeaturedImage.Url))
+	}
+}
+/*
+{visible && <p>表示！</p>}
+{visible ? <p>表示！</p> : <p>あるいはこちらを表示！</p>}
+*/
+---
+
+<div class="post-box">
+	<a href={getPostLink(post.Slug)}>
+		
+			{
+				image ? (
+					<div class="img featured_image">
+						<img src={image} alt="Featured image of the post" />
+					</div>
+
+				) : (
+					<div class="img noimg"><p>NO IMAGE</p></div>
+				)
+			}
+		<div class="text">
+			<h2 class="post-title">
+				{post.Icon && post.Icon.Type === 'emoji' ? (
+					<>
+						<span>{post.Icon.Emoji}</span>
+						{title}
+					</>
+				) : post.Icon && post.Icon.Type === 'external' ? (
+					<>
+						<img src={post.Icon.Url} alt="Post title icon" />
+						{title}
+					</>
+				) : (
+					title
+				)}
+			</h2>
+			<div class="entry_meta">
+				<div class="entry_date"> 
+					{post.Date ? getDateStr(post.Date) : ''}
+				</div>
+				<div class="entry_tags">
+				{
+					post.Tags &&
+					  post.Tags.length > 0 &&
+					  post.Tags.map((tag: SelectProperty) => {
+						return <span class={`tag ${tag.color}`}>{tag.name}</span>
+					  })
+				}
+				</div>
+			</div>
+		</div>
+	</a>
+</div>
+
+
+<style lang="scss">
+	.post-box{
+		width: 100%;
+		display: flex;
+		background: $white;
+		border-radius:10px;
+		transition:all 0.3s ease;
+		//border:2px solid transparent;
+		&:hover{
+			//border:2px solid $red;
+			background:$hoverbg;
+			box-shadow:3px 3px 6px #cacaca;
+		}
+		a{
+			width: 100%;
+			border-radius:10px;
+			color:$textcolor_base;
+			&:hover{
+				text-decoration: none;
+				.noimg{
+					opacity: 0.8;
+				}
+			}
+			.img{
+				border-radius:10px 10px 0 0;
+				aspect-ratio: 9/6;
+				&.noimg{
+					background-color: $noimage;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					transition:all 0.3s ease;
+					p{
+						color:$white;
+						font-family:$font_title;
+						font-size:18px;
+					}
+				}
+				img{
+					border-radius:10px 10px 0 0;
+					aspect-ratio: 9/6;
+					object-fit: cover;
+					width: 100%;
+					max-height: 100%;
+				}
+
+			}
+			.text{
+				padding:2% 4%;
+				h2{
+					font-size:16px;
+					font-weight:bold;
+				}
+				.entry_date{
+					font-size:12px;
+				}
+				.entry_tags{
+					span{
+						display: inline-block;
+						margin:0 8px 8px 0;
+						padding: 0.2% 2%;
+						font-size:12px;
+						border-radius:4px;
+					}
+				}
+
+			}
+		}
+	}
+</style>
