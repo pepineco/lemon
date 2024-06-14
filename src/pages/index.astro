@@ -8,12 +8,7 @@ import {
 } from '../lib/notion/client.ts'
 import Layout from '../layouts/Layout.astro'
 import NoContents from '../components/NoContents.astro'
-import PostDate from '../components/PostDate.astro'
-import PostTags from '../components/PostTags.astro'
-import PostTitle from '../components/PostTitle.astro'
-import PostFeaturedImage from '../components/PostFeaturedImage.astro'
-import PostExcerpt from '../components/PostExcerpt.astro'
-import ReadMoreLink from '../components/ReadMoreLink.astro'
+import ListPost from '../components/ListPost.astro'
 import Pagination from '../components/Pagination.astro'
 import BlogPostsLink from '../components/BlogPostsLink.astro'
 import BlogTagsLink from '../components/BlogTagsLink.astro'
@@ -25,34 +20,56 @@ const [posts, rankedPosts, tags, numberOfPages] = await Promise.all([
   getAllTags(),
   getNumberOfPages(),
 ])
+
+/*<div class={styles.post} key={post.Slug}> */
 ---
 
 <Layout>
-  <div slot="main" class={styles.main}>
-    {
-      posts.length === 0 ? (
-        <NoContents contents={posts} />
-      ) : (
-        posts.map((post) => (
-          <div class={styles.post} key={post.Slug}>
-            <PostDate post={post} />
-            <PostTags post={post} />
-            <PostTitle post={post} />
-            <PostFeaturedImage post={post} />
-            <PostExcerpt post={post} />
-            <ReadMoreLink post={post} />
-          </div>
-        ))
-      )
-    }
+	<div slot="main" class={styles.main}>
+		<div class="list">
+		{
+			posts.length === 0 ? (
+				<NoContents contents={posts} />
+			) : (
+				posts.map((post) => (
 
-    <footer>
-      <Pagination currentPage={1} numberOfPages={numberOfPages} />
-    </footer>
-  </div>
+				<div class="post-wrapper" key={post.Slug}>
+					<ListPost post={post} />
+				</div>
+				))
+			)
+		}
+		</div>		
 
-  <div slot="aside" class={styles.aside}>
-    <BlogPostsLink heading="Recommended" posts={rankedPosts} />
-    <BlogTagsLink heading="Categories" tags={tags} />
-  </div>
+		<footer class="pagination">
+			<Pagination currentPage={1} numberOfPages={numberOfPages} />
+		</footer>
+	</div>
+
+	<div slot="aside" class={styles.aside}>
+		<BlogTagsLink tags={tags} />
+	</div>
 </Layout>
+
+<style lang="scss">
+	.list{
+		padding: 6% 0;
+		display: flex;
+		flex-wrap:wrap;
+		.post-wrapper{
+			width: 31%;
+			margin:0 3% 5% 0;
+			display: flex;
+			&:nth-of-type(3n){
+				margin:0 0 5% 0;
+			}
+			@media #{$sp}{
+				width: 100%;
+				margin:0 0 5% 0;
+			}
+		}
+	}
+	footer.pagination{
+		padding:4% 0;
+	}
+</style>
