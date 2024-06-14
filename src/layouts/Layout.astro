@@ -132,7 +132,7 @@ if (database.Icon && database.Icon.Type === 'file') {
 		display:flex;
 		justify-content:space-between;
 		align-items:center;
-		background:$lightgray;
+		background:$bg_body;
 		z-index:500;
 		@media #{$sp} {
 			padding:3% $spsize;
@@ -140,13 +140,13 @@ if (database.Icon && database.Icon.Type === 'file') {
 		.site_name{
 			a{
 				font-family: $font_title;
-				font-weight: 400;
-				font-size:30px;
-				letter-spacing:0.2em;
+				font-weight: 900;
+				font-size:36px;
+				letter-spacing:0.12em;
 				color:$textcolor_base;
 				text-decoration:none;
 				@media #{$sp} {
-					font-size:24px;
+					font-size:30px;
 				}
 			}
 		}
@@ -167,7 +167,7 @@ if (database.Icon && database.Icon.Type === 'file') {
 
 <style lang="scss" is:global>
 	body{
-		background:$lightgray;
+		background:$bg_body;
 		-webkit-text-size-adjust: 100%;
 		font-feature-settings : "palt";
 		font-family: $font_family;
