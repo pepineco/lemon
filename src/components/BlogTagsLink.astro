@@ -31,34 +31,35 @@ const { heading, tags } = Astro.props
   }
 </div>
 
-<style>
-  .blog-tags-link {
-  }
-  .blog-tags-link h2 {
-    margin: 0;
-    padding-left: 0.4rem;
-    color: #777;
-    font-size: 0.95rem;
-  }
-  .blog-tags-link ul {
-    list-style-type: none;
-    padding: 0;
-    margin-top: 0.3rem;
-    margin-block-end: 1rem;
-  }
-  .blog-tags-link ul li {
-    position: relative;
-    padding: 0.4rem;
-    line-height: 1.2rem;
-    font-size: 0.9rem;
-    gap: 6px;
-  }
-  .blog-tags-link ul li a {
-    min-width: 0;
-    border-radius: 3px;
-    padding: 2px 6px;
-    line-height: 1.2;
-    color: rgb(50, 48, 44);
-    background: rgba(227, 226, 224, 0.5);
-  }
+<style lang="scss">
+	.blog-tags-link{
+		h2{
+			font-size:18px;
+			font-weight:500;
+		}
+		ul {
+			list-style-type: none;
+			padding: 0;
+			li{
+				display:inline-block;
+				padding:0 20px 2% 0;
+				a{
+					display:block;
+					line-height: 2;
+					padding: 5px 10px;
+					border-radius: 3px;
+					color: rgb(28, 56, 41);
+					letter-spacing:0.08em;
+					transform: translateY(0);
+					font-family:$font_title;
+					font-weight:900;
+					&:hover{
+						text-decoration:none;
+						transform: translateY(-5px);
+					}
+				}
+			}
+		}
+	}
+ 
 </style>
