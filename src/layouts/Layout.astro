@@ -1,5 +1,6 @@
 ---
 import "@fontsource/zen-maru-gothic";
+import "@fontsource/zen-maru-gothic/900.css";
 import { PUBLIC_GA_TRACKING_ID, ENABLE_LIGHTBOX } from '../server-constants.ts'
 import { getDatabase } from '../lib/notion/client.ts'
 import { getNavLink, getStaticFilePath, filePath } from '../lib/blog-helpers.ts'
@@ -106,7 +107,7 @@ if (database.Icon && database.Icon.Type === 'file') {
 					<div class="copyright">
 						<p>&copy; { database.Title	}.</p>
 					</div>
-					<div class="powerdby">
+					<div class="poweredby">
 						<span>Powered by&nbsp;</span>
 						<a href="https://github.com/otoyo/astro-notion-blog" target="_blank">astro-notion-blog</a>
 					</div>
