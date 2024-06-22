@@ -43,14 +43,26 @@ const { block } = Astro.props
   </table>
 </div>
 
-<style>
-  .table {
-  }
-  .table table {
-    margin: 0.6rem 0;
-  }
-  .table th,
-  .table td {
-    font-weight: normal;
-  }
+<style lang="scss">
+	.table {
+	}
+	.table table {
+		margin: 0.6rem 0;
+		width: 100%;
+		table-layout: fixed;
+		border-top:1px solid #ccc;
+		border-left:1px solid #ccc;
+		border-collapse: collapse;
+	}
+	.table th,
+	.table td {
+		font-weight: normal;
+		border-right:1px solid #ccc;
+		border-bottom:1px solid #ccc;
+		padding: 0.5% 1%;
+	}
+	.table th{
+		background-color: $noimage;
+		color:#fff;
+	}
 </style>
