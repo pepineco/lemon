@@ -49,7 +49,7 @@ const { post } = Astro.props
 	}
 
 	const { likes } = await res.json()
-	buttontext.textContent = `いいね！ ${likes}`
+	buttontext.textContent = `いいね ${likes}`
 
 	button.addEventListener('click', async () => {
 	  const res = await fetch(url, { method: 'POST' })
@@ -58,7 +58,7 @@ const { post } = Astro.props
 	  }
 
 	  const { likes } = await res.json()
-	  buttontext.textContent = `いいね！ ${likes}`
+	  buttontext.textContent = `いいね ${likes}`
 	  buttonicon.textContent = `★`
 	})
   })
