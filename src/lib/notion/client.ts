@@ -988,6 +988,7 @@ function _buildPost(pageObject: responses.PageObject): Post {
         : '',
     FeaturedImage: featuredImage,
     Rank: prop.Rank.number ? prop.Rank.number : 0,
+    Like: prop.Like.number ? prop.Like.number : 0,
   }
 
   return post
@@ -1042,4 +1043,28 @@ function _buildRichText(richTextObject: responses.RichTextObject): RichText {
   }
 
   return richText
+}
+
+//like
+export async function incrementLikes(post:Post): Promise<Post|null> {
+  let result: responses.PageObject
+
+  const params: requestParams.UpdatePage = {
+    page_id: post.PageId,
+    properties: {
+      Like: {
+        number: (post.Like || 0) + 1,
+      },
+    },
+  }
+
+  result = (await client.pages.update(
+    params as any // eslint-disable-line @typescript-eslint/no-explicit-any
+  )) as responses.UpdatePageResponse
+
+  if (!result) {
+    return null
+  }
+
+  return _buildPost(result)
 }

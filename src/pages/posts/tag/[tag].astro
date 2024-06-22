@@ -16,6 +16,7 @@ import BlogTagsLink from '../../../components/BlogTagsLink.astro'
 import styles from '../../../styles/blog.module.css'
 import '../../../styles/notion-color.css'
 
+export const prerender = true //APIエンドポイント以外は静的生成を維持したい
 export async function getStaticPaths() {
 	const allTags = await getAllTags()
 	return allTags.map((tag: SelectProperty) => ({ params: { tag: tag.name } }))

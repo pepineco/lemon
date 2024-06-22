@@ -1,0 +1,65 @@
+---
+export interface Props {
+  post: Post
+}
+
+const { post } = Astro.props
+---
+<div class="like_this">
+	<button class="like-button" data-slug={post.Slug}><span class="icon">☆</span><span class="text">いいね 0</span></button>
+</div>
+<style lang="scss">
+	.like_this{
+		padding: 6% 3%;
+		.like-button {
+			appearance: none;
+			border:2px solid #f8849c;
+			border-radius:4px;
+			padding: 1px 5px;
+			background-color: transparent;
+			color:#333;
+			font-size:14px;
+			span.icon{
+				display: inline-block;
+				padding:0 5px 0 0;
+				color:#f8849c;
+				font-size:16px;
+			}
+			&:hover{
+				background-color: #ffeff2;
+			}
+
+
+		}
+  
+ 	}
+</style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', async () => {
+	const button = document.querySelector('.like-button')
+	const buttontext = document.querySelector('.like-button span.text')
+	const buttonicon = document.querySelector('.like-button span.icon')
+	const slug = button.dataset.slug
+	const url = `/api/likes.json?slug=${slug}`
+
+	const res = await fetch(url)
+	if (res.status !== 200) {
+	  throw new Error('Failed to like get')
+	}
+
+	const { likes } = await res.json()
+	buttontext.textContent = `いいね！ ${likes}`
+
+	button.addEventListener('click', async () => {
+	  const res = await fetch(url, { method: 'POST' })
+	  if (res.status !== 200) {
+		throw new Error('Failed to like post')
+	  }
+
+	  const { likes } = await res.json()
+	  buttontext.textContent = `いいね！ ${likes}`
+	  buttonicon.textContent = `★`
+	})
+  })
+</script>

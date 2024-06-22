@@ -461,3 +461,6 @@ interface Table {
 interface TableRow {
   cells: RichTextObject[][]
 }
+
+ // eslint-disable-next-line @typescript-eslint/no-empty-interface
+ export interface UpdatePageResponse extends PageObject {}
