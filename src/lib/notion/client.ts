@@ -567,21 +567,30 @@ function _buildBlock(blockObject: responses.BlockObject): Block {
         block.ToDo = toDo
       }
       break
-    case 'video':
-      if (blockObject.video) {
-        const video: Video = {
-          Caption: blockObject.video.caption?.map(_buildRichText) || [],
-          Type: blockObject.video.type,
-        }
-        if (
-          blockObject.video.type === 'external' &&
-          blockObject.video.external
-        ) {
-          video.External = { Url: blockObject.video.external.url }
-        }
-        block.Video = video
+  case 'video':
+    if (blockObject.video) {
+      const video: Video = {
+        Caption: blockObject.video.caption?.map(_buildRichText) || [],
+        Type: blockObject.video.type,
       }
-      break
+      if (
+        blockObject.video.type === 'external' &&
+        blockObject.video.external
+      ) {
+        video.External = { Url: blockObject.video.external.url }
+      } else if (
+        blockObject.video.type === 'file' &&
+        blockObject.video.file
+      ) {
+        video.File = {
+          Type: blockObject.video.type,
+          Url: blockObject.video.file.url,
+          ExpiryTime: blockObject.video.file.expiry_time,
+        }
+      }
+      block.Video = video
+    }
+    break
     case 'image':
       if (blockObject.image) {
         const image: Image = {

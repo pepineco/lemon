@@ -107,6 +107,7 @@ export interface Image {
 export interface Video {
   Caption: RichText[]
   Type: string
+  File?: FileObject
   External?: External
 }
 
