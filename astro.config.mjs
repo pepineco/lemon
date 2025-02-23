@@ -5,6 +5,7 @@ import CustomIconDownloader from './src/integrations/custom-icon-downloader';
 import FeaturedImageDownloader from './src/integrations/featured-image-downloader';
 import PublicNotionCopier from './src/integrations/public-notion-copier';
 import vercel from '@astrojs/vercel/serverless';
+//import awsAmplify from 'astro-aws-amplify';
 
 const getSite = function () {
 	if (CUSTOM_DOMAIN) {
@@ -47,15 +48,12 @@ export default defineConfig({
 			preprocessorOptions: {
 				scss: {
 					additionalData: `@import "src/styles/_mixin.scss";`
-				}				
+				}
 			}
 		},
-		// https://qiita.com/otohusan/items/d75e6141eedab5572e19
-		//https://zenn.dev/kagunyan25/scraps/f0ed3f1a40e045
-		ssr: {
-			noExternal: ["zwitch", ],
-		}
 	},
 	output: 'server',
-	adapter: vercel(),
+	adapter: vercel()
+	//adapter: awsAmplify()
+
 });
