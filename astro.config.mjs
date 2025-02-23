@@ -47,8 +47,7 @@ export default defineConfig({
 			preprocessorOptions: {
 				scss: {
 					additionalData: `@import "src/styles/_mixin.scss";`
-				}
-				
+				}				
 			}
 		},
 		// https://qiita.com/otohusan/items/d75e6141eedab5572e19
