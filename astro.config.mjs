@@ -48,7 +48,12 @@ export default defineConfig({
 				scss: {
 					additionalData: `@import "src/styles/_mixin.scss";`
 				}
+				
 			}
+		},
+		// https://qiita.com/otohusan/items/d75e6141eedab5572e19
+		ssr: {
+			noExternal: ["react-icons" ],
 		}
 	},
 	output: 'server',
