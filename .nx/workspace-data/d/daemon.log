@@ -1,0 +1,11 @@
+[NX Daemon Server] - 2025-09-05T10:45:06.959Z - Started listening on: /private/var/folders/s3/kk2glf75071800fd4dw52sbh0000gn/T/ce11bfa7e8e2b03ad316/d.sock
+[NX Daemon Server] - 2025-09-05T10:45:06.961Z - [WATCHER]: Subscribed to changes within: /Applications/MAMP/htdocs/work/lemon (native)
+[NX Daemon Server] - 2025-09-05T10:45:06.963Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2025-09-05T10:45:06.963Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2025-09-05T10:45:06.964Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2025-09-05T10:45:06.965Z - [REQUEST]: Responding to the client. Shutdown initiated
+[NX Daemon Server] - 2025-09-05T10:45:06.965Z - Done responding to the client Shutdown initiated
+[NX Daemon Server] - 2025-09-05T10:45:06.965Z - Handled FORCE_SHUTDOWN. Handling time: 0. Response time: 0.
+[NX Daemon Server] - 2025-09-05T10:45:06.967Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2025-09-05T10:45:06.967Z - [WATCHER]: Stopping the watcher for /Applications/MAMP/htdocs/work/lemon (sources)
+[NX Daemon Server] - 2025-09-05T10:45:06.967Z - [WATCHER]: Stopping the watcher for /Applications/MAMP/htdocs/work/lemon (outputs)

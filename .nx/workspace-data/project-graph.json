@@ -1,0 +1,60 @@
+{
+  "nodes": {
+    "astro-notion-blog": {
+      "name": "astro-notion-blog",
+      "type": "lib",
+      "data": {
+        "root": ".",
+        "sourceRoot": ".",
+        "name": "astro-notion-blog",
+        "includedScripts": [
+          "_fetch-notion-blocks"
+        ],
+        "tags": [
+          "npm:private"
+        ],
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": [
+              "_fetch-notion-blocks"
+            ]
+          },
+          "js": {
+            "packageName": "astro-notion-blog"
+          }
+        },
+        "targets": {
+          "_fetch-notion-blocks": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "node scripts/retrieve-block-children.cjs",
+              "runCommand": "npm run _fetch-notion-blocks"
+            },
+            "inputs": [
+              "!{projectRoot}/**/*",
+              "!{projectRoot}/**/.*",
+              "!{projectRoot}/**/.*/**/*",
+              {
+                "env": "DATABASE_ID"
+              }
+            ],
+            "outputs": [
+              "{projectRoot}/tmp"
+            ],
+            "options": {
+              "script": "_fetch-notion-blocks"
+            },
+            "configurations": {},
+            "parallelism": true
+          }
+        },
+        "implicitDependencies": []
+      }
+    }
+  },
+  "externalNodes": {},
+  "dependencies": {
+    "astro-notion-blog": []
+  },
+  "version": "6.0"
+}

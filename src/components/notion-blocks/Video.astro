@@ -1,6 +1,6 @@
 ---
 import * as interfaces from '../../lib/interfaces.ts'
-import { filePath } from '../../lib/blog-helpers'
+//import { filePath } from '../../lib/blog-helpers'
 import { isYouTubeURL, parseYouTubeVideoId } from '../../lib/blog-helpers.ts'
 import Caption from './Caption.astro'
 
@@ -33,7 +33,8 @@ try {
 					allowfullscreen
 				/>
 			) : (
-       <video controls src={`${filePath(url)}#t=0.001`}></video>
+				<video controls src={url.toString()}></video>
+       			<!--video controls src={`${filePath(url)}#t=0.001`}></video-->
 			)
 		}		
 			
