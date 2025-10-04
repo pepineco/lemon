@@ -1,6 +1,6 @@
 ---
 import { Post } from '../lib/interfaces.ts'
-//import { filePath } from '../lib/blog-helpers'
+import { filePath } from '../lib/blog-helpers'
 
 export interface Props {
   post: Post
@@ -8,8 +8,8 @@ export interface Props {
 
 const { post } = Astro.props
 // 画像URLを DEV / 本番共通で処理
-let image = post.FeaturedImage?.Url
-/*
+//let image = post.FeaturedImage?.Url
+
 let image = ''
 if (post.FeaturedImage && post.FeaturedImage.Url) {
   if (import.meta.env.DEV) {
@@ -18,7 +18,7 @@ if (post.FeaturedImage && post.FeaturedImage.Url) {
     image = filePath(new URL(post.FeaturedImage.Url))
   }
 }
-  */
+
 ---
 
 {
@@ -28,3 +28,11 @@ if (post.FeaturedImage && post.FeaturedImage.Url) {
     </div>
   )
 }
+<style>
+	.post-featured-image {
+		img{
+			width:100%;
+			height:auto;
+		}
+	}
+</style>
