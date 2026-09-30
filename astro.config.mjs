@@ -1,12 +1,21 @@
 import { defineConfig } from 'astro/config';
+import { loadEnv } from 'vite';
 import icon from "astro-icon";
-import { CUSTOM_DOMAIN, BASE_PATH } from './src/server-constants';
-import CoverImageDownloader from './src/integrations/cover-image-downloader';
-import CustomIconDownloader from './src/integrations/custom-icon-downloader';
-import FeaturedImageDownloader from './src/integrations/featured-image-downloader';
-import PublicNotionCopier from './src/integrations/public-notion-copier';
 import vercel from '@astrojs/vercel/serverless';
 //import awsAmplify from 'astro-aws-amplify';
+
+const fileEnv = loadEnv(process.env.NODE_ENV || 'production', process.cwd(), '');
+for (const [key, value] of Object.entries(fileEnv)) {
+	if (process.env[key] === undefined) {
+		process.env[key] = value;
+	}
+}
+
+const { CUSTOM_DOMAIN, BASE_PATH } = await import('./src/server-constants.ts');
+const { default: CoverImageDownloader } = await import('./src/integrations/cover-image-downloader.ts');
+const { default: CustomIconDownloader } = await import('./src/integrations/custom-icon-downloader.ts');
+const { default: FeaturedImageDownloader } = await import('./src/integrations/featured-image-downloader.ts');
+const { default: PublicNotionCopier } = await import('./src/integrations/public-notion-copier.ts');
 
 const getSite = function () {
 	if (CUSTOM_DOMAIN) {
