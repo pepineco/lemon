@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 import { loadEnv } from 'vite';
 import icon from "astro-icon";
-import vercel from '@astrojs/vercel/serverless';
+import vercel from '@astrojs/vercel';
 //import awsAmplify from 'astro-aws-amplify';
 
 const fileEnv = loadEnv(process.env.NODE_ENV || 'production', process.cwd(), '');
@@ -58,7 +58,8 @@ export default defineConfig({
 		css: {
 			preprocessorOptions: {
 				scss: {
-					additionalData: `@use "src/styles/mixin" as *;`
+					additionalData: `@use "src/styles/mixin" as *;`,
+					loadPaths: [process.cwd()],
 				}
 			}
 		},

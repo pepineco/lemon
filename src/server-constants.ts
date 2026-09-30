@@ -14,4 +14,5 @@ export const REQUEST_TIMEOUT_MS = parseInt(
   import.meta.env.REQUEST_TIMEOUT_MS || '10000',
   10
 )
-export const ENABLE_LIGHTBOX = import.meta.env.ENABLE_LIGHTBOX
+export const ENABLE_LIGHTBOX =
+  String(import.meta.env.ENABLE_LIGHTBOX).toLowerCase() === 'true'
